@@ -13,6 +13,7 @@ import { ChartsTooltip } from "@mui/x-charts/ChartsTooltip";
 import { LinePlot, MarkPlot } from "@mui/x-charts/LineChart";
 import { ChartContainer } from "@mui/x-charts/ChartContainer";
 import { ChartsLegend } from "@mui/x-charts/ChartsLegend";
+import { Typography } from "@mui/material";
 
 const newDataSet = appData.map(
   ({ Total_kWhs_Used, Avg_Daily_Temperature, Date: date }) => ({
@@ -49,8 +50,37 @@ const series = [
 
 export default function Home() {
   return (
-    <div className="flex flex-1 items-center h-screen bg-white p-4 rounded-2xl">
+    <div className="flex flex-1 items-center h-screen bg-green-100 p-4 rounded-2xl">
       <Stack sx={{ width: "100%" }}>
+        <Stack
+          direction="row"
+          spacing={4}
+          alignItems="center"
+          justifyContent="center"
+          sx={{ mb: 2 }}
+        >
+          <Stack direction="row" spacing={1} alignItems="center">
+            <Box sx={{ width: 14, height: 14, bgcolor: "#00a35c" }} />
+            <Typography variant="body2" className="text-black">
+              Total kWhs Used
+            </Typography>
+          </Stack>
+
+          <Stack direction="row" spacing={1} alignItems="center">
+            <Box
+              sx={{
+                width: 14,
+                height: 14,
+                borderRadius: "50%",
+                bgcolor: "#ff0000",
+              }}
+            />
+            <Typography variant="body2" className="text-black">
+              Average Temperature
+            </Typography>
+          </Stack>
+        </Stack>
+
         <Box sx={{ width: "100%", height: "500px" }}>
           <ChartContainer
             series={series}
