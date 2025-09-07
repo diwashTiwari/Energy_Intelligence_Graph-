@@ -35,7 +35,6 @@ const series = [
     yAxisId: "leftAxis",
     label: "Total kWhs Used",
     legendLabel: "Total kWhs Used",
-    marker: { shape: "square" },
   },
   {
     type: "line",
@@ -44,13 +43,17 @@ const series = [
     yAxisId: "rightAxis",
     label: "Average Temperature",
     legendLabel: "Average Temperature",
-    marker: { shape: "circle" },
+    markerStyle: {
+      fill: "#ff0000",
+      stroke: "#ff0000",
+      strokeWidth: 2,
+    },
   },
 ] as const;
 
 export default function Home() {
   return (
-    <div className="flex flex-1 items-center h-screen bg-green-100 p-4 rounded-2xl">
+    <div className="w-full">
       <Stack sx={{ width: "100%" }}>
         <Stack
           direction="row"
@@ -60,7 +63,14 @@ export default function Home() {
           sx={{ mb: 2 }}
         >
           <Stack direction="row" spacing={1} alignItems="center">
-            <Box sx={{ width: 14, height: 14, bgcolor: "#00a35c" }} />
+            <Box
+              sx={{
+                width: 14,
+                height: 14,
+                bgcolor: "#00a35c",
+                borderRadius: "50%",
+              }}
+            />
             <Typography variant="body2" className="text-black">
               Total kWhs Used
             </Typography>
@@ -109,6 +119,15 @@ export default function Home() {
             dataset={newDataSet}
             height={500}
             margin={{ top: 60, bottom: 80, left: 100, right: 100 }}
+            sx={{
+              "& .MuiBarElement-root": {
+                clipPath: "inset(0 0 0 0 round 5px 5px 0 0)",
+              },
+              "& .MuiMarkElement-root": {
+                fill: "#ff0000 !important",
+                stroke: "#ff0000 !important",
+              },
+            }}
           >
             <ChartsLegend />
             <ChartsGrid horizontal />
@@ -123,6 +142,10 @@ export default function Home() {
           </ChartContainer>
         </Box>
       </Stack>
+
+      <h1 className="text-4xl text-black text-center font-bold">
+        Diwash Tiwari
+      </h1>
     </div>
   );
 }
